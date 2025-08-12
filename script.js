@@ -23,3 +23,16 @@ function toggleMenu(){
   faders.forEach(fader => {
     appearOnScroll.observe(fader);
   });
+  document.addEventListener("DOMContentLoaded", () => {
+    const descriptions = document.querySelectorAll(".project-description");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.2 });
+
+    descriptions.forEach(desc => observer.observe(desc));
+});
